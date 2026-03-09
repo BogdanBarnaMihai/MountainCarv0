@@ -6,7 +6,7 @@ Result
 Mean sum of rewards: **-80** across 3,500 training episodes
 (random agent baseline: -200 | considered solved: ~-110)
 
-## How it works
+How it works
 
 A car starts at the bottom of a valley and must reach the flag on the right hill. The engine is too weak to drive straight up — the agent must learn to swing back and forth to build momentum.
 
