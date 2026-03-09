@@ -10,7 +10,7 @@ How it works
 
 A car starts at the bottom of a valley and must reach the flag on the right hill. The engine is too weak to drive straight up — the agent must learn to swing back and forth to build momentum.
 
-The state space is continuous (position + velocity), so both dimensions are discretized into 20 bins using `np.linspace` and `np.digitize`, producing a **20×20×3 Q-matrix** (1,200 learnable values).
+The state space is continuous (position + velocity), so both dimensions are discretized into 20 bins using `np.linspace` and `np.digitize`, producing a 20×20×3 Q-matrix (1,200 learnable values).
 
 The agent learns via the Temporal Difference update:
 
