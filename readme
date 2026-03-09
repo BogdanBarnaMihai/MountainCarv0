@@ -1,0 +1,39 @@
+# Q-Learning Agent for MountainCar-v0
+
+Tabular Q-Learning implementation from scratch using Python, NumPy, and Gymnasium to solve the MountainCar-v0 control problem.
+
+## Result
+Mean sum of rewards: **-80** across 3,500 training episodes
+(random agent baseline: -200 | considered solved: ~-110)
+
+## How it works
+
+A car starts at the bottom of a valley and must reach the flag on the right hill. The engine is too weak to drive straight up — the agent must learn to swing back and forth to build momentum.
+
+The state space is continuous (position + velocity), so both dimensions are discretized into 20 bins using `np.linspace` and `np.digitize`, producing a **20×20×3 Q-matrix** (1,200 learnable values).
+
+The agent learns via the Temporal Difference update:
+
+Q(s,a) ← Q(s,a) + α · (r + γ · maxQ(s') − Q(s,a))
+
+## Implementation details
+
+- **Exploration**: fully random for first 500 episodes, epsilon-greedy afterwards, decay starts after episode 1,500
+- **Reward shaping**: +100 at goal (position ≥ 0.5), +5 near top (> 0.3), +1 on the way up (> 0.1)
+- **Truncation handling**: episode ends after 200 steps via `terminated or truncated`
+- **Q-matrix init**: `np.random.uniform(0, 1)` — optimistic initialization
+
+## Parameters
+
+| Parameter | Value |
+|-----------|-------|
+| Alpha (learning rate) | 0.1 |
+| Gamma (discount factor) | 1.0 |
+| Epsilon (initial) | 0.2 |
+| Episodes | 3,500 |
+| Bins per dimension | 20 |
+
+## Stack
+- Python 3.12
+- NumPy
+- Gymnasium
